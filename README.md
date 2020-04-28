@@ -88,19 +88,15 @@ Write and perform a Monte Carlo analysis to calculate a sample size necessary to
 **n=3 will give you 92% power. I envision this experiment having at least 3 mice/ treatment group to make it work which is very doable.**
 
 ```{r message=FALSE, warning=FALSE}
-
 b = 1000 
 a = 1.9 
 f = 1.25 
 sd = 200 
 n = 3 
 sims = 100 
-
 pval <- replicate(
   sims, {
- 
     sample.df <- CRdataMaker(n, b, a, f, sd)
-    
     sim.ezaov <- ezANOVA(
             data = sample.df, 
             wid = ID,
@@ -108,15 +104,11 @@ pval <- replicate(
             between = Predictor,
             type = 2
             )
-  
-  pval <- sim.ezaov$ANOVA[1,5]
-    
+  pval <- sim.ezaov$ANOVA[1,5]  
     }
   )
-
 pwr.pct <- sum(pval<0.05)/sims*100
 paste(pwr.pct, sep="", "% power. Change 'n' in your initializer for higher or lower power.")
-
 ggplot(data.frame(pval))+
   geom_histogram(aes(pval), fill="red")+
   labs(x="p-value")
