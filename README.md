@@ -4,7 +4,6 @@ Capstone project for IBS 538
 ### Alvarez_Natalie_Capstone
 
 ```{r message=FALSE, warning=FALSE}
-##setwd("~/Documents/Emory/IBS538")
 library(tidyverse)
 library(ez)
 library(viridis)
@@ -80,6 +79,7 @@ ggplot(dat, aes(Predictor, Outcome))+
        x= "Drug Treatment Group")+
   ggtitle ("Viral Titer vs Drug Treatment Simulation")
 ```
+
  <img width="666" alt="Screen Shot 2020-04-27 at 6 29 48 PM" src="https://user-images.githubusercontent.com/64442826/80427610-25edfa80-88b6-11ea-8b44-ced26ea6be12.png">
  
  ## 9) 
@@ -121,6 +121,7 @@ ggplot(data.frame(pval))+
   geom_histogram(aes(pval), fill="red")+
   labs(x="p-value")
 ```
+
  <img width="670" alt="Screen Shot 2020-04-27 at 6 32 22 PM" src="https://user-images.githubusercontent.com/64442826/80427643-38683400-88b6-11ea-9f23-c006e8b26fee.png">
  
  ## 10) 
