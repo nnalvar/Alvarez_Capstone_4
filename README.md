@@ -23,7 +23,7 @@ Briefly state something that is unknown about this system that can be discovered
 ## 3)
 Make an “if” “then” prediction that is related to item #2. It should be of the general form, “if X is true, then Y should happen”.
 
-**If mice are given a drug (NHC, remdesivir, or chloroquine), then viral load will be decreased compared to if the mice were just given a placebo.**
+**If mice are given a drug (NHC, remdesivir, or chloroquine), then viral load will be different compared to if the mice were just given a placebo.**
 
 ## 4) 
 What dependent variable will be observed to test this prediction in item #3? What predictor variable will be used to manipulate the system experimentally? Define the inherent properties of these variables (eg, are they sorted, ordered or measured).
@@ -33,7 +33,7 @@ What dependent variable will be observed to test this prediction in item #3? Wha
 ## 5) 
 Write a statistical hypothesis.  There should be a null and alternate. These should be explicitly consistent with the prediction in item #3 and the response variable in #4. In other words, make sure the statistical hypotheses that you write here serves as a test of the prediction made in item #3. Ch10.3
 
-**Null hypothesis is if the viral loads of the drug treatments are equal to the placebo. Alternate hypothesis is if the viral loads of the drug treatments are less than the placebo.**
+**Null hypothesis is if the viral loads of the drug treatments are equal to the placebo. Alternate hypothesis is if the viral loads of the drug treatments are not equal to the placebo.**
 
 ## 6) 
 What is the statistical test you would use to test the hypothesis in item #5? Briefly defend what makes this appropriate for the hypothesis and the experimental variables. If there are alternatives, why is this approach chosen instead? Points will not be awarded if the justification involves something like "because everybody does it this way".
@@ -88,15 +88,19 @@ Write and perform a Monte Carlo analysis to calculate a sample size necessary to
 **n=3 will give you 92% power. I envision this experiment having at least 3 mice/ treatment group to make it work which is very doable.**
 
 ```{r message=FALSE, warning=FALSE}
+
 b = 1000 
 a = 1.9 
 f = 1.25 
 sd = 200 
 n = 3 
 sims = 100 
+
 pval <- replicate(
   sims, {
+ 
     sample.df <- CRdataMaker(n, b, a, f, sd)
+    
     sim.ezaov <- ezANOVA(
             data = sample.df, 
             wid = ID,
@@ -104,11 +108,15 @@ pval <- replicate(
             between = Predictor,
             type = 2
             )
-  pval <- sim.ezaov$ANOVA[1,5]  
+  
+  pval <- sim.ezaov$ANOVA[1,5]
+    
     }
   )
+
 pwr.pct <- sum(pval<0.05)/sims*100
 paste(pwr.pct, sep="", "% power. Change 'n' in your initializer for higher or lower power.")
+
 ggplot(data.frame(pval))+
   geom_histogram(aes(pval), fill="red")+
   labs(x="p-value")
