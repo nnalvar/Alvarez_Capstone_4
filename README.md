@@ -3,7 +3,7 @@ Capstone project for IBS 538
 
 ### Alvarez_Natalie_Capstone
 
-```{r message=FALSE, warning=FALSE}
+```
 library(tidyverse)
 library(ez)
 library(viridis)
@@ -48,7 +48,7 @@ List the procedures and decision rules you have for executing and interpreting t
 ## 8) 
 Produce a graph of a simulation for the expected results. Create a dataMaker-like function in R to create and plot the data. Label and scale any axis. The graph should illustrate the magnitude of the expected response, or the level of response that you expect to see and would be minimally scientifically relevant. Be sure to illustrate any variation that is expected.
 
-```{r}
+```
 b = 1000 
 a = 1.9 
 f = 1.25 
@@ -87,7 +87,7 @@ Write and perform a Monte Carlo analysis to calculate a sample size necessary to
 
 **n=3 will give you 92% power. I envision this experiment having at least 3 mice/ treatment group to make it work which is very doable.**
 
-```{r message=FALSE, warning=FALSE}
+```
 
 b = 1000 
 a = 1.9 
